@@ -33,13 +33,11 @@ export default {
       const url = 'https://api.github.com/users/ningningccn/repos';
       const vm = this;
       vm.axios.get(url).then((response) => {
-        console.log('response: ', response.data);
         vm.data = response.data;
       });
     },
     createPost(data, index) {
       const container = document.getElementsByClassName('container')[0];
-      // console.log(container);
       const title = document.createElement('div');
       title.className = 'title';
       const parallax = document.createElement('div');
@@ -86,14 +84,11 @@ export default {
     window.addEventListener('scroll', () => {
       const vm = this;
       const { scrollHeight, scrollTop, clientHeight } = document.documentElement;
-      console.log(scrollHeight, scrollTop, clientHeight, '123321');
       if (scrollTop + clientHeight > scrollHeight - 5) {
-        console.log(vm.data.length, vm.index);
         if (vm.data.length > vm.index) {
           vm.createPost(vm.data, vm.index);
           this.index += 1;
         } else if (vm.data.length === vm.index) {
-          console.log('last');
           this.index += 1;
           vm.createLastPost();
         }
